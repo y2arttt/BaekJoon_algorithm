@@ -44,3 +44,8 @@
 
  <p>첫째 줄에 테트로미노가 놓인 칸에 쓰인 수들의 합의 최댓값을 출력한다.</p>
 
+
+ ### 참고 자료
+
+ <p>https://velog.io/@skyepodium/%EB%B0%B1%EC%A4%80-14500-%ED%85%8C%ED%8A%B8%EB%A1%9C%EB%AF%B8%EB%85%B8</p>
+<p>https://data-flower.tistory.com/64</p>
