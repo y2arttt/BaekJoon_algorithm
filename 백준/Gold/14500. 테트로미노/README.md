@@ -1,7 +1,7 @@
 # [Gold IV] 테트로미노 - 14500 
 
 [문제 링크](https://www.acmicpc.net/problem/14500) 
-
+ 
 ### 성능 요약
 
 메모리: 38016 KB, 시간: 184 ms
