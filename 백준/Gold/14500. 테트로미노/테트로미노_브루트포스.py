@@ -1,5 +1,5 @@
 import sys
-def game(i,j):
+def game(i,j):  
     global tetris,arr
     maxd = 0
     for x in tetris:
