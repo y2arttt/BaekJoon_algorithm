@@ -11,7 +11,7 @@ def insert(i):
     return
 
 def delete(i):
-    if i*2+2 < len(heapq) and i*2+1 < len(heapq) and heapq[i] > heapq[i*2+2] and heapq[i] > heapq[i*2+1] :
+    if i*2+2 < len(heapq) and heapq[i] > heapq[i*2+2] and heapq[i] > heapq[i*2+1] :
         if heapq[i*2+2] > heapq[i*2+1]:
             heapq[i*2+1],heapq[i] = heapq[i],heapq[i*2+1]
             delete(i*2+1)
