@@ -29,16 +29,15 @@ def delete(i):
 n = int(sys.stdin.readline())
 for _ in range(n):
     t = int(sys.stdin.readline())
-    if t == 0:
-        if heapq:
-            if len(heapq) > 1:
-                result.append(heapq[0])
-                heapq[0] = heapq.pop(len(heapq)-1)
-                delete(0)
-            else:
-                result.append(heapq.pop(0))
+    if t == 0 and heapq:
+        if len(heapq) > 1:
+            result.append(heapq[0])
+            heapq[0] = heapq.pop(len(heapq)-1)
+            delete(0)
         else:
-            result.append(0)
+            result.append(heapq.pop(0))
+    elif t == 0:
+        result.append(0)
     else:    
         heapq.append(t)
         insert(len(heapq)-1)
