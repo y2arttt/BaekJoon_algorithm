@@ -1,8 +1,5 @@
 import sys
-from collections import deque
 
-    
-arr = [] 
 n = int(sys.stdin.readline())
 p = list(map(int,sys.stdin.readline().split()))
 sum = 0
