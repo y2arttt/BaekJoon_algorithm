@@ -5,20 +5,13 @@ n,m = map(int,sys.stdin.readline().split())
 arr = [0 for _ in range(100)] 
 check = [True for _ in range(100)] 
 
-for _ in range(n):
+for _ in range(n+m):
     t1,t2 =  map(int,sys.stdin.readline().split())
     arr[t1-1] = -(t2-1)
-for _ in range(m):
-   t1,t2 = map(int,sys.stdin.readline().split())
-   arr[t1-1] = -(t2-1)
 queue = deque()
 
-if arr[0] < 0: #시작부터 사다리일경우 예외
-    queue.append(abs(arr[0]))
-    arr[abs(arr[0])] = 1
-    check[abs(arr[0])] = 1
-else:
-    queue.append(0)  
+
+queue.append(0)  
 while queue:
     t = queue.popleft()
     if t == 99:
@@ -35,3 +28,4 @@ while queue:
             check[t+i] = False
             queue.append(t+i)
 print(arr[99])
+
