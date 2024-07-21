@@ -1,8 +1,9 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
-long long tree[4000002];
+long long *tree;
 long long datas[1000001];
 
 long long build(int start, int end, int Node){
@@ -35,7 +36,8 @@ int main()
     ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
     int N,M,K;
     cin>>N>>M>>K;
-    
+    int height = ceil(log2(N));//높이 구하기 (log를 올림함)
+    tree = new long long[1<<(height+1)];
     for(int i=0;i<N;i++){
         cin>>datas[i];
     }
