@@ -11,7 +11,7 @@ int main() {
     
     priority_queue <pair<int,int>> pq;
     vector <pair<int,int>> graph[1001];
-    int pass[1001];
+    int pass[1001]; //역추적을 위해 이동경로 저장
     int N,M;
     int dist[1001];
     cin>>N>>M;
@@ -38,7 +38,7 @@ int main() {
             if( arriveWeight < dist[arrivecityName]) {
                 dist[arrivecityName] = arriveWeight;
                 pq.push({-arriveWeight,arrivecityName});
-                pass[arrivecityName] = currentCity;
+                pass[arrivecityName] = currentCity; //역추적을 위해 현위치 저장
             }
             
         }
@@ -48,7 +48,7 @@ int main() {
     stack<int> st;
     int reverse = end;
     int cnt=0;
-    while (reverse != start)
+    while (reverse != start) //도착부터 시작까지 역추적
     {
         st.push(reverse);
         reverse = pass[reverse];
