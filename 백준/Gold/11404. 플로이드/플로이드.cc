@@ -19,7 +19,7 @@ int main() {
     for(int i=0; i<M; i++){
         int s,e,w;
         cin>>s>>e>>w;
-        map[s][e] = min(map[s][e], w);
+        map[s][e] = min(map[s][e], w); //같은 노선을 여러번 받는 다는 것을 간과했었음
     }
     for(int k=1; k<=N; k++){
         for(int i=1; i<=N; i++){
