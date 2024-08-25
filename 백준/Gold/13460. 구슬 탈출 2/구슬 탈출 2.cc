@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <queue>
 #include <string>
 
@@ -19,12 +18,12 @@ struct state {
     state(pos r, pos b, int c) : red(r), blue(b), cnt(c) {}
 };
 
-pos move(pos current, int dir, const vector<string>& board) {
+pos move(pos current, int dir, const string board[], int n, int m) {
     while (true) {
         int ni = current.i + di[dir];
         int nj = current.j + dj[dir];
 
-        if (board[ni][nj] == '#') break;
+        if (ni < 0 || ni >= n || nj < 0 || nj >= m || board[ni][nj] == '#') break;
         if (board[ni][nj] == 'O') return {ni, nj};
         current = {ni, nj};
     }
@@ -35,7 +34,7 @@ int main() {
     int n, m;
     cin >> n >> m;
 
-    vector<string> board(n);
+    string board[10];
     pos r(-1, -1), b(-1, -1);
 
     for (int i = 0; i < n; i++) {
@@ -47,7 +46,7 @@ int main() {
     }
 
     queue<state> q;
-    vector<vector<vector<vector<bool>>>> visited(n, vector<vector<vector<bool>>>(m, vector<vector<bool>>(n, vector<bool>(m, false))));
+    bool visited[10][10][10][10] = {false};
 
     q.push({r, b, 0});
     visited[r.i][r.j][b.i][b.j] = true;
@@ -59,8 +58,8 @@ int main() {
         if (current.cnt >= 10) break;
 
         for (int dir = 0; dir < 4; dir++) {
-            pos newRed = move(current.red, dir, board);
-            pos newBlue = move(current.blue, dir, board);
+            pos newRed = move(current.red, dir, board, n, m);
+            pos newBlue = move(current.blue, dir, board, n, m);
 
             if (board[newBlue.i][newBlue.j] == 'O') continue;
 
