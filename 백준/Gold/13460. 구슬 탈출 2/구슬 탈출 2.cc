@@ -4,8 +4,9 @@
 
 using namespace std;
 
-int di[4] = {1, -1, 0, 0}; 
-int dj[4] = {0, 0, 1, -1}; 
+int n, m;
+string board[10];
+int dir[4][2] = {{1,0},{-1,0},{0,1},{0,-1}};
 
 struct pos {
     int i, j;
@@ -18,23 +19,22 @@ struct state {
     state(pos r, pos b, int c) : red(r), blue(b), cnt(c) {}
 };
 
-pos move(pos current, int dir, const string board[], int n, int m) {
+int move(pos& current, int di, int dj) {
+    int distance = 0;
     while (true) {
-        int ni = current.i + di[dir];
-        int nj = current.j + dj[dir];
-
+        int ni = current.i + di;
+        int nj = current.j + dj;
         if (ni < 0 || ni >= n || nj < 0 || nj >= m || board[ni][nj] == '#') break;
-        if (board[ni][nj] == 'O') return {ni, nj};
         current = {ni, nj};
+        distance++;
+        if (board[ni][nj] == 'O') return -1;  // 구멍에 빠진 경우
     }
-    return current;
+    return distance;
 }
 
 int main() {
-    int n, m;
     cin >> n >> m;
-
-    string board[10];
+    
     pos r(-1, -1), b(-1, -1);
 
     for (int i = 0; i < n; i++) {
@@ -57,22 +57,26 @@ int main() {
 
         if (current.cnt >= 10) break;
 
-        for (int dir = 0; dir < 4; dir++) {
-            pos newRed = move(current.red, dir, board, n, m);
-            pos newBlue = move(current.blue, dir, board, n, m);
+        for (auto& d : dir) {
+            pos newRed = current.red;
+            pos newBlue = current.blue;
+            int dr = move(newRed, d[0], d[1]);
+            int db = move(newBlue, d[0], d[1]);
 
-            if (board[newBlue.i][newBlue.j] == 'O') continue;
-
-            if (board[newRed.i][newRed.j] == 'O') {
+            if (db == -1) continue;  // 파란 구슬이 구멍에 빠진 경우
+            if (dr == -1) {  // 빨간 구슬이 구멍에 빠진 경우
                 cout << current.cnt + 1 << endl;
                 return 0;
             }
 
             if (newRed.i == newBlue.i && newRed.j == newBlue.j) {
-                if (dir == 0) (current.red.i > current.blue.i) ? newBlue.i-- : newRed.i--;
-                else if (dir == 1) (current.red.i < current.blue.i) ? newBlue.i++ : newRed.i++;
-                else if (dir == 2) (current.red.j > current.blue.j) ? newBlue.j-- : newRed.j--;
-                else (current.red.j < current.blue.j) ? newBlue.j++ : newRed.j++;
+                if (dr > db) {
+                    newRed.i -= d[0];
+                    newRed.j -= d[1];
+                } else {
+                    newBlue.i -= d[0];
+                    newBlue.j -= d[1];
+                }
             }
 
             if (visited[newRed.i][newRed.j][newBlue.i][newBlue.j]) continue;
