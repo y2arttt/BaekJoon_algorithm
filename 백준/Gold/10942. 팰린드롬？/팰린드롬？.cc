@@ -31,7 +31,7 @@ int main() {
     for(int i=0; i<m; i++){
         int s,e;
         cin>>s>>e;
-        cout << (palindrome[s-1][e-1] ? 1 : 0) << '\n';
+        cout << palindrome[s-1][e-1] << '\n';
     }
 
     return 0;
