@@ -3,6 +3,17 @@ import java.util.Scanner;
 
 public class Main {
 
+    static void bubbleSort(Vector<Integer> v) {
+        for (int i = 0; i < v.size(); i++) {
+            for (int j = i + 1; j < v.size(); j++) {
+                if (v.get(i).compareTo(v.get(j)) >= 0) {
+                    int tmp = v.get(i);
+                    v.set(i, v.get(j));
+                    v.set(j, tmp);
+                }
+            }
+        }
+    }
     static void qSort(int l, int r, Vector<Integer> v){
         if(l<r){
             int q = partiton(l,r,v);
@@ -48,8 +59,10 @@ public class Main {
                 positiveSort.add(arr[i]);
             }
         }
-        qSort(0,negativeSort.size()-1,negativeSort);
-        qSort(0,positiveSort.size()-1,positiveSort);
+//        qSort(0,negativeSort.size()-1,negativeSort);
+//        qSort(0,positiveSort.size()-1,positiveSort);
+        bubbleSort(positiveSort);
+        bubbleSort(negativeSort);
         int sum = one;
         for(int i = 0;i<negativeSort.size();i+=2){
             if(i+1<negativeSort.size()){
@@ -70,6 +83,5 @@ public class Main {
         System.out.println(sum);
 
     }
-
 
 }
