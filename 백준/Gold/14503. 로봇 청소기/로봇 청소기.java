@@ -26,9 +26,11 @@ public class Main {
                 }
             }else {
                 // 방향전환이 핵심이었음!!!!!
-                int tdir = (dir+2)%4;
-                int ti = ri + di[tdir];
-                int tj = rj + dj[tdir];
+//                int tdir = (dir+2)%4;
+//                int ti = ri + di[tdir];
+//                int tj = rj + dj[tdir];
+                int ti = ri - di[dir];
+                int tj = rj - dj[dir];
                 if(0<= ti && ti < n && 0<= tj && tj < m && map[ti][tj] != 1){
                     ri = ti;
                     rj = tj;
