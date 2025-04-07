@@ -1,5 +1,2 @@
-SELECT ROUND(AVG(CASE 
-                   WHEN LENGTH IS NULL THEN 10
-                   ELSE LENGTH 
-                 END), 2) AS AVERAGE_LENGTH
-FROM FISH_INFO;
+select round(AVG(ifnull(LENGTH,10)),2) as AVERAGE_LENGTH
+from FISH_INFO;
